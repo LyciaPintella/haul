@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ISUI>
+
+
+	<template name='Console'>
+		<Border>0</Border>
+		<Font template='Console.Font' />
+		<SelectionColor>FFD4D0C8</SelectionColor>
+    	<!-- <ScrollBar>Console.ScrollBar</ScrollBar> -->
+    	<ScrollBar Template='console.ScrollBar' />
+    	<BackBufferSize>2000</BackBufferSize>		
+	</template>
+	<template name='Console.Font'>	
+		<Name>Terminal</Name>
+		<Size>8</Size>
+		<Color>FFFF9900</Color>
+	</template>
+
+
+        <Window name='TheHauler'>
+		<Visible>1</Visible>
+		<CloseButton>1</CloseButton>
+		<X>100</X>
+		<Y>100</Y>
+		<Width>500</Width>
+		<Height>350</Height>
+		<Children>
+		
+		<TabControl Name='MainTabControl'>
+			<X>0</X>
+			<Y>0</Y>
+			<Width>100%</Width>
+			<Height>100%</Height>
+			<FrameTexture />
+	<Tabs>
+		<Tab Name='MainTab'>
+			<commandbutton name='Pause'>
+				<X>1</X>
+				<Y>1</Y>
+				<Width>50</Width>
+				<Height>20</Height>
+				<Text>Pause</Text>
+				<Command></Command>
+					<OnLeftClick>
+						Script[haul]:Pause
+						Echo The Hauler is paused!
+					</OnLeftClick>
+			</commandbutton>
+
+
+			<commandbutton name='Resume'>
+				<X>55</X>
+				<Y>1</Y>
+				<Width>25</Width>
+				<Height>20</Height>
+				<Text>Go</Text>
+				<Command></Command>
+					<OnLeftClick>
+						Script[haul]:Resume
+						Echo The Hauler is Resumed!
+					</OnLeftClick>
+			</commandbutton>
+
+
+			<commandbutton name='Unload gui'>
+				<X>90</X>
+				<Y>1</Y>
+				<Width>20</Width>
+				<Height>20</Height>
+				<Text>U</Text>
+                                <Command>UIElement -kill "TheHauler"</Command>
+			</commandbutton>
+
+
+			<commandbutton name='End Script'>
+				<X>115</X>
+				<Y>1</Y>
+				<Width>20</Width>
+				<Height>20</Height>
+				<Text>X</Text>
+                                <OnLeftClick>
+					EndScript haul
+					UIElement -kill "TheHauler"
+				</OnLeftClick>
+			</commandbutton>
+			<console name='StatusConsole' template='Console'>
+				<X>1</X>
+				<Y>40</Y>
+				<Width>97.5%</Width>
+				<Height>200</Height>
+			</console>
+		</Tab>
+
+		<Tab Name='2ndThing'>
+			<commandbutton name='End Script'>
+				<X>70</X>
+				<Y>10</Y>
+				<Width>20</Width>
+				<Height>20</Height>
+				<Text>X</Text>
+                                <OnLeftClick>
+					EndScript haul
+					UIElement -kill "TheHauler"
+				</OnLeftClick>
+			</commandbutton>
+
+
+				<checkbox Name='cbDisable3D'>
+					<X>10</X>
+					<Y>50</Y>
+					<Height>20</Height>
+					<Width>100</Width>
+					<Text>Disable 3D Rendering</Text>
+					<AutoTooltip>Disable EVE 3D Rendering</AutoTooltip>
+					<OnLoad>
+						if ${Script[EVEBot].VariableScope.Config.Common.Disable3D}
+						{
+							This:SetChecked
+						}
+					</OnLoad>
+					<OnLeftClick>
+						{
+						EVE:Toggle3DDisplay
+						}
+					</OnLeftClick>
+				</checkbox>
+       <checkbox name='TestCheckbox'>
+		<X>10</X>
+		<Y>70</Y>
+		<Width>133</Width> 
+		<Height>23</Height> 
+		<Text>I am doll parts</Text>
+<!--  <Command>echo I am command</Command>  -->
+<!--  <CommandChecked>Script[haul]:Pause</CommandChecked>  -->
+<!-- http://www.lavishsoft.com/wiki/index.php/LavishGUI:commandcheckbox_(Element_Type)   -->
+
+		<OnLeftClick>
+			{
+			echo I'm a little checkbox short and stout
+			}
+		</OnLeftClick>
+	</checkbox>
+
+
+
+
+		</Tab>
+	</Tabs>
+</TabControl>	
+		</Children>
+	</Window>
+</ISUI>
